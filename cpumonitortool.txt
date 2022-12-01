@@ -1,0 +1,27 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using System.Diagnostics;
+ 
+namespace CPUUsage
+{
+    public partial class Form1 : Form
+    {
+        private PerformanceCounter CPUCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+        //private PerformanceCounter MemCounter = new PerformanceCounter("Memory", "Available MBytes");
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            this.label1.Text = this.CPUCounter.NextValue().ToString() + "%"; //+ Environment.NewLine + this.MemCounter.NextValue().ToString() + "MB";
+
+        }
+    }
+}
